@@ -1,16 +1,16 @@
 /*
-	SkyFactory 4 Twilight Forest Stage Item Staging Script
+	SkyFactory 4 Black Mulch Stage Item Staging Script
 
-	Stages the items for the Twilight Forest stage
+	Stages the items for the Black Mulch stage
 */
 import crafttweaker.item.IIngredient;
 
 import mods.zenstages.Stage;
 
-static stage as Stage = stages.twilightForest;
+static stage as Stage = stages.blackMulch;
 
 static stagedItems as IIngredient[] = [
-	<telepastries:twilight_cake>
+	<inspirations:mulch:6>
 ];
 
 function init() {

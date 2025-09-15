@@ -1,16 +1,16 @@
 /*
-	SkyFactory 4 Twilight Forest Stage Item Staging Script
+	SkyFactory 4 Empowered Parabox Item Staging Script
 
-	Stages the items for the Twilight Forest stage
+	Stages the items for the Empowered Parabox stage
 */
 import crafttweaker.item.IIngredient;
 
 import mods.zenstages.Stage;
 
-static stage as Stage = stages.twilightForest;
+static stage as Stage = stages.paraboxTwo;
 
 static stagedItems as IIngredient[] = [
-	<telepastries:twilight_cake>
+	<parabox:empowered_parabox>
 ];
 
 function init() {

@@ -1,72 +1,56 @@
-/*
-    SkyFactory 4 Astral Sorcery Recipe Script
+#priority 3400
 
-    This script handles the recipes for Astral Sorcery.
+/*
+	SkyFactory 4 Astral Sorcery Script
+
+	This script is a zenClass to allow easy interation with Astral Sorcery.
 */
-import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
+import crafttweaker.item.IItemStack;
+import crafttweaker.oredict.IOreDictEntry;
 
-/*
-    Shaped Recipes
-*/
-static shapedRecipes as IIngredient[][][][IItemStack] = {
-	<astralsorcery:blockaltar>: [
-		[
-			[<ore:blockMarble>, <astralsorcery:blockblackmarble>, <ore:blockMarble>],
-			[<ore:blockMarble>, <ore:workbench>, <ore:blockMarble>],
-			[<ore:blockMarble>, null, <ore:blockMarble>]
-		]
-	],
-	<astralsorcery:itemwand>: [
-		[
-			[null, <ore:gemAquamarine>, <ore:enderpearl>],
-			[null, <ore:blockMarble>, <ore:gemAquamarine>],
-			[<ore:blockMarble>, null, null]
-		]
-	]
-};
+import mods.astralsorcery.Grindstone;
+import mods.astralsorcery.StarlightInfusion;
 
-static namedShapedRecipes as IIngredient[][][][string][IItemStack] = {
-};
+zenClass AstralSorcery {
+	zenConstructor() {
+	}
 
-/*
-    Mirrored Recipes
-*/
-static mirroredRecipes as IIngredient[][][][IItemStack] = {
-};
+	/*
+		Remove a Grindstone Recipe
+	*/
+	function removeGrindstone(output as IItemStack) {
+		Grindstone.removeRecipe(output);
+	}
 
-static namedMirroredRecipes as IIngredient[][][][string][IItemStack] = {
-};
+	/*
+		Add a Grindstone Recipe
+	*/
+	function addGrindstone(input as IItemStack, output as IItemStack) {
+		Grindstone.addRecipe(input, output);
+	}
+	function addGrindstone(input as IItemStack, output as IItemStack, doubleChance as float) {
+		Grindstone.addRecipe(input, output, doubleChance);
+	}
+	function addGrindstone(input as IOreDictEntry, output as IItemStack) {
+		Grindstone.addRecipe(input, output);
+	}
+	function addGrindstone(input as IOreDictEntry, output as IItemStack, doubleChance as float) {
+		Grindstone.addRecipe(input, output, doubleChance);
+	}
 
-/*
-    Shapeless Recipes
-*/
-static shapelessRecipes as IIngredient[][][IItemStack] = {
-};
+	/*
+		Remove a Starlight Infusion Recipe
+	*/
+	function removeStarlight(output as IItemStack) {
+		StarlightInfusion.removeInfusion(output);
+	}
 
-static namedShapelessRecipes as IIngredient[][][string][IItemStack] = {
-};
-
-/*
-    Recipe Removals
-*/
-static removeRecipes as IItemStack[] = [
-<astralsorcery:blockaltar>
-];
-
-function init() {
-	// Un-named recipes
-	recipeUtil.process(shapedRecipes, false);
-    recipeUtil.process(mirroredRecipes, true);
-    recipeUtil.process(shapelessRecipes);
-
-	// Named recipes
-	recipeUtil.processNamed(namedShapedRecipes, false);
-    recipeUtil.processNamed(namedMirroredRecipes, true);
-    recipeUtil.processNamed(namedShapelessRecipes);
-
-	recipeUtil.removeRecipes(removeRecipes);
+	/*
+		Add a Starlight Infusion Recipe
+	*/
+	function addStarlight(input as IItemStack, output as IItemStack, consumeMultiple as bool, consumptionChance as float, tickTime as int) {
+		StarlightInfusion.addInfusion(input, output, consumeMultiple, consumptionChance, tickTime);
+	}
 }
-
-
 

@@ -1,62 +1,206 @@
-/*
-    SkyFactory 4 Mekanism Recipe Script
+#priority 3400
 
-    This script handles the recipes for Mekanism.
+/*
+	SkyFactory 4 Mekanism Script
+
+	This script is a zenClass to allow easy interation with Mekanism.
 */
-import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
+import crafttweaker.item.IItemStack;
 
-/*
-    Shaped Recipes
-*/
-static shapedRecipes as IIngredient[][][][IItemStack] = {
-	<mekanismgenerators:generator:6>:  [
-		[
-			[null, <mekanismgenerators:turbineblade>, null],
-			[<mekanism:ingot:1>, <mekanism:controlcircuit:3>, <mekanism:ingot:1>],
-			[<mekanism:ingot:1>, <mekanism:energycube>.withTag({tier: 1, mekData: {}}), <mekanism:ingot:1>]
-		]
-	]
-};
+import mod.mekanism.gas.IGasStack;
 
-static namedShapedRecipes as IIngredient[][][][string][IItemStack] = {
-};
+import mods.mekanism.chemical.crystallizer as Crystallizer;
+import mods.mekanism.chemical.injection as Injection;
+import mods.mekanism.combiner as Combiner;
+import mods.mekanism.compressor as Compressor;
+import mods.mekanism.crusher as Crusher;
+import mods.mekanism.enrichment as Enrichment;
+import mods.mekanism.infuser as Infuser;
+import mods.mekanism.purification as PurificationChamber;
+import mods.mekanism.sawmill as Sawmill;
+import mods.mekanism.smelter as Smelter;
 
-/*
-    Mirrored Recipes
-*/
-static mirroredRecipes as IIngredient[][][][IItemStack] = {
-};
+zenClass Mekanism {
+	zenConstructor() {
+	}
 
-static namedMirroredRecipes as IIngredient[][][][string][IItemStack] = {
-};
+	/*
+		Remove a Enrichment Chamber Recipe
+	*/
+	function removeEnrichment(input as IIngredient) {
+		Enrichment.removeRecipe(input);
+	}
+	function removeEnrichment(input as IIngredient, output as IIngredient) {
+		Enrichment.removeRecipe(input, output);
+	}
 
-/*
-    Shapeless Recipes
-*/
-static shapelessRecipes as IIngredient[][][IItemStack] = {
-};
+	/*
+		Add a Enrichment Chamber Recipe
+	*/
+	function addEnrichment(input as IItemStack, output as IItemStack) {
+		Enrichment.addRecipe(input, output);
+	}
 
-static namedShapelessRecipes as IIngredient[][][string][IItemStack] = {
-};
+	/*
+		Add a Chemical Injection Chamber Recipe
+	*/
+	function addChemicalInjection(input as IItemStack, gasInput as IGasStack, output as IItemStack) {
+		Injection.addRecipe(input, gasInput, output);
+	}
 
-/*
-    Recipe Removals
-*/
-static removeRecipes as IItemStack[] = [
-	<mekanismgenerators:generator:6>
-];
+	/*
+		Remove a Chemical Injection Chamber Recipe
+	*/
+	function removeChemicalInjection(output as IIngredient) {
+		Injection.removeRecipe(output);
+	}
 
-function init() {
-	// Un-named recipes
-	recipeUtil.process(shapedRecipes, false);
-    recipeUtil.process(mirroredRecipes, true);
-    recipeUtil.process(shapelessRecipes);
+	/*
+		Add a Combiner Recipe
+	*/
+	function addCombiner(input as IItemStack, extraInput as IItemStack, output as IItemStack) {
+		Combiner.addRecipe(input, extraInput, output);
+	}
 
-	// Named recipes
-	recipeUtil.processNamed(namedShapedRecipes, false);
-    recipeUtil.processNamed(namedMirroredRecipes, true);
-    recipeUtil.processNamed(namedShapelessRecipes);
+	/*
+		Remove a Combiner Recipe
+	*/
+	function removeCombiner(output as IIngredient) {
+		Combiner.removeRecipe(output);
+	}
+	function removeCombiner(output as IIngredient, input as IIngredient) {
+		Combiner.removeRecipe(output, input);
+	}
 
-	recipeUtil.removeRecipes(removeRecipes);
+	/*
+		Add a Crusher Recipe
+	*/
+	function addCrusher(input as IItemStack, output as IItemStack) {
+		Crusher.addRecipe(input, output);
+	}
+
+	/*
+		Remove a Crusher Recipe
+	*/
+	function removeCrusher(output as IIngredient) {
+		Crusher.removeRecipe(output);
+	}
+	function removeCrusher(output as IIngredient, input as IIngredient) {
+		Crusher.removeRecipe(output, input);
+	}
+
+	/*
+		Add an Infuser Recipe
+	*/
+	function addInfusion(infusionType as string, toConsume as int, input as IItemStack, output as IItemStack) {
+		Infuser.addRecipe(infusionType, toConsume, input, output);
+	}
+
+	/*
+		Remove an Infuser Recipe
+	*/
+	function removeInfusion(output as IIngredient) {
+		Infuser.removeRecipe(output);
+	}
+	function removeInfusion(output as IIngredient, input as IIngredient, infusionType as string) {
+		Infuser.removeRecipe(output, input, infusionType);
+	}
+
+	/*
+		Add a Chemical Crystallizer Recipe
+	*/
+	function addChemicalCrystallizer(inputGas as IGasStack, output as IItemStack) {
+		Crystallizer.addRecipe(inputGas, output);
+	}
+
+	/*
+		Remove a Chemical Crystallizer Recipe
+	*/
+	function removeChemicalCrystallizer(output as IIngredient) {
+		Crystallizer.removeRecipe(output);
+	}
+	function removeChemicalCrystallizer(output as IIngredient, inputGas as IIngredient) {
+		Crystallizer.removeRecipe(output, inputGas);
+	}
+
+	/*
+		Add an Energized Smelter Recipe
+	*/
+	function addSmelter(input as IItemStack, output as IItemStack) {
+		Smelter.addRecipe(input, output);
+	}
+
+	/*
+		Remove an Energized Smelter Recipe
+	*/
+	function removeSmelter(input as IIngredient) {
+		Smelter.removeRecipe(input);
+	}
+	function removeSmelter(input as IIngredient, output as IIngredient) {
+		Smelter.removeRecipe(input, output);
+	}
+
+	/*
+		Add an Osmium Compressor Recipe
+	*/
+	function addCompressor(input as IItemStack, output as IItemStack) {
+		Compressor.addRecipe(input, output);
+	}
+	function addCompressor(input as IItemStack, inputGas as IGasStack, output as IItemStack) {
+		Compressor.addRecipe(input, inputGas, output);
+	}
+
+	/*
+		Remove an Osmium Compressor Recipe
+	*/
+	function removeCompressor(output as IItemStack) {
+		Compressor.removeRecipe(output);
+	}
+	function removeCompressor(output as IItemStack, input as IIngredient, inputGas as IIngredient) {
+		Compressor.removeRecipe(output, input, inputGas);
+	}
+
+	/*
+		Add a Sawmill Recipe
+	*/
+	function addSawmill(input as IItemStack, output as IItemStack) {
+		Sawmill.addRecipe(input, output);
+	}
+	function addSawmill(input as IItemStack, output as IItemStack, bonusOutput as IItemStack, bonusChance as double) {
+		Sawmill.addRecipe(input, output);
+	}
+
+	/*
+		Remove a Sawmill Recipe
+	*/
+	function removeSawmill(input as IIngredient) {
+		Sawmill.removeRecipe(input);
+	}
+	function removeSawmill(input as IIngredient, output as IIngredient) {
+		Sawmill.removeRecipe(input, output);
+	}
+	function removeSawmill(input as IIngredient, output as IIngredient, bonusOutput as IIngredient) {
+		Sawmill.removeRecipe(input, output, bonusOutput);
+	}
+
+	/*
+		Add a Purification Chamber Recipe
+	*/
+	function addPurification(input as IItemStack, output as IItemStack) {
+		PurificationChamber.addRecipe(input, output);
+	}
+	function addPurification(input as IItemStack, inputGas as IGasStack, output as IItemStack) {
+		PurificationChamber.addRecipe(input, inputGas, output);
+	}
+
+	/*
+		Remove a Purification Chamber Recipe
+	*/
+	function removePurification(output as IItemStack) {
+		PurificationChamber.removeRecipe(output);
+	}
+	function removePurification(output as IItemStack, input as IIngredient, inputGas as IIngredient) {
+		PurificationChamber.removeRecipe(output, input, inputGas);
+	}
 }

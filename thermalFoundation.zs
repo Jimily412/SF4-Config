@@ -1,86 +1,46 @@
-/*
-    SkyFactory 4 Thermal Foundation Recipe Script
-
-    This script handles the recipes for Thermal Foundation.
-*/
-import crafttweaker.item.IItemStack;
-import crafttweaker.item.IIngredient;
-import scripts.crafttweaker.craftingUtils;
-
+#priority 2700
 
 /*
-    Shaped Recipes
+	SkyFactory 4 Thermal Foundation OreDict Script.
 */
-static shapedRecipes as IIngredient[][][][IItemStack] = {
-};
+<ore:dyeBlack>.add(<thermalfoundation:material:768>);
+<ore:dyeBlack>.add(<thermalfoundation:material:769>);
 
-static namedShapedRecipes as IIngredient[][][][string][IItemStack] = {
-};
+//Removing oredict for dyes that are not used
+<ore:dye>.remove(<thermalfoundation:dye>);
+<ore:dye>.remove(<thermalfoundation:dye:1>);
+<ore:dye>.remove(<thermalfoundation:dye:2>);
+<ore:dye>.remove(<thermalfoundation:dye:3>);
+<ore:dye>.remove(<thermalfoundation:dye:4>);
+<ore:dye>.remove(<thermalfoundation:dye:5>);
+<ore:dye>.remove(<thermalfoundation:dye:6>);
+<ore:dye>.remove(<thermalfoundation:dye:7>);
+<ore:dye>.remove(<thermalfoundation:dye:8>);
+<ore:dye>.remove(<thermalfoundation:dye:9>);
+<ore:dye>.remove(<thermalfoundation:dye:10>);
+<ore:dye>.remove(<thermalfoundation:dye:11>);
+<ore:dye>.remove(<thermalfoundation:dye:12>);
+<ore:dye>.remove(<thermalfoundation:dye:13>);
+<ore:dye>.remove(<thermalfoundation:dye:14>);
+<ore:dye>.remove(<thermalfoundation:dye:15>);
 
-/*
-    Mirrored Recipes
-*/
-static mirroredRecipes as IIngredient[][][][IItemStack] = {
-};
+<ore:dyeBlack>.remove(<thermalfoundation:dye>);
+<ore:dyeRed>.remove(<thermalfoundation:dye:1>);
+<ore:dyeGreen>.remove(<thermalfoundation:dye:2>);
+<ore:dyeBrown>.remove(<thermalfoundation:dye:3>);
+<ore:dyeBlue>.remove(<thermalfoundation:dye:4>);
+<ore:dyePurple>.remove(<thermalfoundation:dye:5>);
+<ore:dyeCyan>.remove(<thermalfoundation:dye:6>);
+<ore:dyeLightGray>.remove(<thermalfoundation:dye:7>);
+<ore:dyeGray>.remove(<thermalfoundation:dye:8>);
+<ore:dyePink>.remove(<thermalfoundation:dye:9>);
+<ore:dyeLime>.remove(<thermalfoundation:dye:10>);
+<ore:dyeYellow>.remove(<thermalfoundation:dye:11>);
+<ore:dyeLightBlue>.remove(<thermalfoundation:dye:12>);
+<ore:dyeMagenta>.remove(<thermalfoundation:dye:13>);
+<ore:dyeOrange>.remove(<thermalfoundation:dye:14>);
+<ore:dyeWhite>.remove(<thermalfoundation:dye:15>);
 
-static namedMirroredRecipes as IIngredient[][][][string][IItemStack] = {
-};
-
-/*
-    Shapeless Recipes
-*/
-static shapelessRecipes as IIngredient[][][IItemStack] = {
-    <thermalfoundation:material:96> * 1: [
-        [<ore:dustIron>, <ore:dustCoal>]
-    ],
-    <thermalfoundation:material:97> * 2: [
-        [<ore:dustGold>, <ore:dustSilver>]
-    ],
-    <thermalfoundation:material:98> * 3: [
-        [<ore:dustIron>, <ore:dustIron>, <ore:dustNickel>]
-    ],
-    <thermalfoundation:material:99> * 4: [
-        [<ore:dustCopper>, <ore:dustCopper>, <ore:dustCopper>, <ore:dustTin>]
-    ],
-    <thermalfoundation:material:101> * 4: [
-        [<ore:dustCopper>, <ore:dustCopper>, <ore:dustCopper>, <ore:dustSilver>, craftingUtils.getBucketIngredient(<liquid:redstone>)]
-    ],
-    <thermalfoundation:material:102> * 4: [
-        [<ore:dustTin>, <ore:dustTin>, <ore:dustTin>, <ore:dustSilver>, craftingUtils.getBucketIngredient(<liquid:glowstone>)]
-    ],
-    <thermalfoundation:material:103> * 4: [
-        [<ore:dustLead>, <ore:dustLead>, <ore:dustLead>, <ore:dustPlatinum>, craftingUtils.getBucketIngredient(<liquid:ender>)]
-    ]
-};
-
-static namedShapelessRecipes as IIngredient[][][string][IItemStack] = {
-};
-
-/*
-    Recipe Removals
-*/
-static removeRecipes as IItemStack[] = [
-];
-
-
-static removeRegex as string[] = [
-    "thermalfoundation:fertilizer_2",
-    "thermalfoundation:fertilizer_3",
-    "thermalfoundation:block_dirt",
-];
-
-
-function init() {
-	// Un-named recipes
-	recipeUtil.process(shapedRecipes, false);
-    recipeUtil.process(mirroredRecipes, true);
-    recipeUtil.process(shapelessRecipes);
-
-	// Named recipes
-	recipeUtil.processNamed(namedShapedRecipes, false);
-    recipeUtil.processNamed(namedMirroredRecipes, true);
-    recipeUtil.processNamed(namedShapelessRecipes);
-
-	recipeUtil.removeRecipes(removeRecipes);
-	recipeUtil.removeRecipes(removeRegex);
-}
+<ore:blockGlassHardened>.remove(<thermalfoundation:glass_alloy:4>);
+<ore:blockGlassHardened>.remove(<thermalfoundation:glass:7>);
+<ore:blockGlassHardened>.remove(<thermalfoundation:glass:8>);

@@ -1,61 +1,68 @@
-/*
-    SkyFactory 4 Rustic Recipe Script
+#priority 3400
 
-    This script handles the recipes for Rustic.
+/*
+	SkyFactory 4 Rustic Class Script
+
+	This script is a zenClass to allow easy interation with Rustic.
 */
 import crafttweaker.item.IItemStack;
-import crafttweaker.item.IIngredient;
+import crafttweaker.liquid.ILiquidStack;
 
-/*
-    Shaped Recipes
-*/
-static shapedRecipes as IIngredient[][][][IItemStack] = {
-	<rustic:crushing_tub>: [
-		[
-			[<ore:plankWood>, null, <ore:plankWood>],
-			[<ore:slabWood>, <ore:slabWood>, <ore:slabWood>]
-		]
-	]
-};
+import mods.rustic.Condenser;
+import mods.rustic.CrushingTub;
+import mods.rustic.EvaporatingBasin;
 
-static namedShapedRecipes as IIngredient[][][][string][IItemStack] = {
-};
+zenClass Rustic {
+	zenConstructor() {
+	}
 
-/*
-    Mirrored Recipes
-*/
-static mirroredRecipes as IIngredient[][][][IItemStack] = {
-};
+	/*
+		Add a Crushing Tub recipe.
+	*/
+	function addCrushingTub(output as ILiquidStack, input as IItemStack) {
+		addCrushingTub(output, null, input);
+	}
 
-static namedMirroredRecipes as IIngredient[][][][string][IItemStack] = {
-};
+	function addCrushingTub(output as ILiquidStack, byproduct as IItemStack, input as IItemStack) {
+		CrushingTub.addRecipe(output, byproduct, input);
+	}
 
-/*
-    Shapeless Recipes
-*/
-static shapelessRecipes as IIngredient[][][IItemStack] = {
-};
+	/*
+		Remove a Crushing Tub recipe.
+	*/
+	function removeCrushingTub(output as ILiquidStack, input as IItemStack) {
+		CrushingTub.removeRecipe(output, input);
+	}
 
-static namedShapelessRecipes as IIngredient[][][string][IItemStack] = {
-};
+	/*
+		Add an Evaporating Basin recipe.
+	*/
+	function addEvaporatingBasin(output as IItemStack, input as ILiquidStack) {
+		EvaporatingBasin.addRecipe(output, input);
+	}
 
-/*
-    Recipe Removals
-*/
-static removeRecipes as IItemStack[] = [
-	<rustic:crushing_tub>
-];
+	/*
+		Remove an Evaporating Basin recipe.
+	*/
+	function removeEvaporatingBasin(output as IItemStack) {
+		EvaporatingBasin.removeRecipe(output);
+	}
 
-function init() {
-	// Un-named recipes
-	recipeUtil.process(shapedRecipes, false);
-    recipeUtil.process(mirroredRecipes, true);
-    recipeUtil.process(shapelessRecipes);
+	/*
+		Add a Condenser recipe.
+	*/
+	function addCondenser(output as IItemStack, input1 as IItemStack, input2 as IItemStack) {
+		Condenser.addRecipe(output, input1, input2);
+	}
 
-	// Named recipes
-	recipeUtil.processNamed(namedShapedRecipes, false);
-    recipeUtil.processNamed(namedMirroredRecipes, true);
-    recipeUtil.processNamed(namedShapelessRecipes);
+	function addCondenser(output as IItemStack, modifier as IItemStack, inputs as IItemStack[]) {
+		Condenser.addRecipe(output, inputs, modifier);
+	}
 
-	recipeUtil.removeRecipes(removeRecipes);
+	/*
+		Remove a Condenser recipe.
+	*/
+	function removeCondenser(output as IItemStack) {
+		Condenser.removeRecipe(output);
+	}
 }

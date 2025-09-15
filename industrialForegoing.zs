@@ -1,73 +1,35 @@
 /*
-    SkyFactory 4 Industrial Foregoing Recipe Script
+<ore:dye>.remove(<industrialforegoing:artificial_dye>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:1>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:2>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:3>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:4>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:5>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:6>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:7>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:8>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:9>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:10>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:11>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:12>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:13>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:14>);
+<ore:dye>.remove(<industrialforegoing:artificial_dye:15>);
 
-    This script handles the recipes for Industrial Foregoing.
+<ore:dyeWhite>.remove(<industrialforegoing:artificial_dye>);
+<ore:dyeOrange>.remove(<industrialforegoing:artificial_dye:1>);
+<ore:dyeMagenta>.remove(<industrialforegoing:artificial_dye:2>);
+<ore:dyeLightBlue>.remove(<industrialforegoing:artificial_dye:3>);
+<ore:dyeYellow>.remove(<industrialforegoing:artificial_dye:4>);
+<ore:dyeLime>.remove(<industrialforegoing:artificial_dye:5>);
+<ore:dyePink>.remove(<industrialforegoing:artificial_dye:6>);
+<ore:dyeGray>.remove(<industrialforegoing:artificial_dye:7>);
+<ore:dyeLightGray>.remove(<industrialforegoing:artificial_dye:8>);
+<ore:dyeCyan>.remove(<industrialforegoing:artificial_dye:9>);
+<ore:dyePurple>.remove(<industrialforegoing:artificial_dye:10>);
+<ore:dyeBlue>.remove(<industrialforegoing:artificial_dye:11>);
+<ore:dyeBrown>.remove(<industrialforegoing:artificial_dye:12>);
+<ore:dyeGreen>.remove(<industrialforegoing:artificial_dye:13>);
+<ore:dyeRed>.remove(<industrialforegoing:artificial_dye:14>);
+<ore:dyeBlack>.remove(<industrialforegoing:artificial_dye:15>);
 */
-import crafttweaker.item.IItemStack;
-import crafttweaker.item.IIngredient;
-
-import mods.zenstages.Utils;
-
-/*
-    Shaped Recipes
-*/
-static shapedRecipes as IIngredient[][][][IItemStack] = {
-	<industrialforegoing:froster>: [
-        [
-            [<industrialforegoing:plastic>, <minecraft:diamond>, <industrialforegoing:plastic>],
-            [<minecraft:water_bucket>, <teslacorelib:machine_case>, <minecraft:water_bucket>],
-            [<industrialforegoing:plastic>, <ore:gearGold>, <industrialforegoing:plastic>]
-        ]
-    ]
-};
-
-static namedShapedRecipes as IIngredient[][][][string][IItemStack] = {
-	<industrialforegoing:laser_lens>: {
-	  	Utils.genRecipeName(stages.pacifist, <industrialforegoing:laser_lens>): [
-	  		[
-	  			[null, <tconstruct:edible:2>, null],
-	  			[<tconstruct:edible:2>, <minecraft:stained_glass_pane>, <tconstruct:edible:2>],
-	  			[null, <tconstruct:edible:2>, null]
-	  		]
-	  	]
-	}
-};
-
-/*
-    Mirrored Recipes
-*/
-static mirroredRecipes as IIngredient[][][][IItemStack] = {
-};
-
-static namedMirroredRecipes as IIngredient[][][][string][IItemStack] = {
-};
-
-/*
-    Shapeless Recipes
-*/
-static shapelessRecipes as IIngredient[][][IItemStack] = {
-};
-
-static namedShapelessRecipes as IIngredient[][][string][IItemStack] = {
-};
-
-/*
-    Recipe Removals
-*/
-static removeRecipes as IItemStack[] = [
-	<industrialforegoing:froster>
-];
-
-function init() {
-	// Un-named recipes
-	recipeUtil.process(shapedRecipes, false);
-    recipeUtil.process(mirroredRecipes, true);
-    recipeUtil.process(shapelessRecipes);
-
-	// Named recipes
-	recipeUtil.processNamed(namedShapedRecipes, false);
-    recipeUtil.processNamed(namedMirroredRecipes, true);
-    recipeUtil.processNamed(namedShapelessRecipes);
-
-	recipeUtil.removeRecipes(removeRecipes);
-}
